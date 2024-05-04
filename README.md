@@ -22,3 +22,19 @@ from station
 order by len_c ,city
 limit 1)
 ```
+
+
+**3.Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates.**
+
+```
+select DISTINCT(city)
+from station
+where city LIKE "a%" OR  city LIKE"e%" OR city LIKE"i%" OR city LIKE "o%" OR city LIKE "u%";
+
+-- Alt Approach--
+
+select DISTINCT(city)
+from station
+where SUBSTR(city,1,1) in ('a','e','i','o','u')
+
+```
