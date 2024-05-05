@@ -38,3 +38,33 @@ from station
 where SUBSTR(city,1,1) in ('a','e','i','o','u')
 
 ```
+
+**4.Query the list of CITY names ending with vowels (a, e, i, o, u) from STATION. Your result cannot contain duplicates.**
+```
+select DISTINCT city
+from station
+where SUBSTR(city,-1,1) in ("a","e","i","o","u");
+```
+
+**5.Query the list of CITY names from STATION which have vowels (i.e., a, e, i, o, and u) as both their first and last characters. Your result cannot contain duplicates.**
+```
+select distinct city
+from station
+where SUBSTR(city,1,1) in ('a','e','i','o','u')
+AND
+SUBSTR(city,-1,1) in ('a','e','i','o','u')
+```
+**6.Query the list of CITY names from STATION that do not start with vowels. Your result cannot contain duplicates.**
+```
+select distinct city
+from station
+where substr(city,1,1) NOT in ('a','e','i','o','u');
+```
+
+**7.Query the list of CITY names from STATION that do not end with vowels. Your result cannot contain duplicates.**
+```
+select distinct city 
+from station
+where substr(city,-1,1) not in ("a","e","i","o","u");
+
+```
