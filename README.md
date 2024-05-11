@@ -1,6 +1,6 @@
 # SQL-Practice_HackerRank
 
-## SELECT
+## SELECT - BASIC
 
 **1.Query all columns for all American cities in the CITY table with populations larger than 100000. The CountryCode for America is USA.**
 ```
@@ -77,7 +77,7 @@ OR
 substr(city,-1,1)  not in ("a","e","i","o","u");
 ```
 
-## AGGREGATION
+## AGGREGATION - BASIC
 
 **9.Query the Name of any student in STUDENTS who scored higher than  Marks. Order your output by the last three characters of each name. If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.**
 
@@ -111,4 +111,45 @@ from station
 where LAT_N >38.7780
 order by LAT_N
 limit 1;
+```
+
+## ADVANCE - SELECT
+
+**1.Write a query identifying the type of each record in the TRIANGLES table using its three side lengths. Output one of the following statements for each record in the table:**
+
+**Equilateral: It's a triangle with  sides of equal length.
+Isosceles: It's a triangle with  sides of equal length.
+Scalene: It's a triangle with  sides of differing lengths.
+Not A Triangle: The given values of A, B, and C don't form a triangle.**
+
+```
+SELECT CASE
+    WHEN (a + b > c AND a + c > b AND b + c > a) THEN
+        CASE
+            WHEN (a = b AND b = c) THEN 'Equilateral'
+            WHEN (a = b OR b = c OR c = a) THEN 'Isosceles'
+            ELSE 'Scalene'
+        END
+    ELSE 'Not A Triangle'
+END AS triangle_type
+FROM triangles;
+```
+
+**Generate the following two result sets:**
+
+**Query an alphabetically ordered list of all names in OCCUPATIONS, immediately followed by the first letter of each profession as a parenthetical (i.e.: enclosed in parentheses). For example: AnActorName(A), ADoctorName(D), AProfessorName(P), and ASingerName(S).
+Query the number of ocurrences of each occupation in OCCUPATIONS. Sort the occurrences in ascending order, and output them in the following format:**
+
+**There are a total of [occupation_count] [occupation]s.
+where [occupation_count] is the number of occurrences of an occupation in OCCUPATIONS and [occupation] is the lowercase occupation name. If more than one Occupation has the same [occupation_count], they should be ordered alphabetically.**
+
+```
+SELECT CONCAT(NAME,'(',LEFT(OCCUPATION,1),')')
+FROM OCCUPATIONS 
+ORDER BY NAME ASC; 
+SELECT CONCAT("There are a total of"," ",COUNT(OCCUPATION)," ",LOWER(OCCUPATION),'s.') 
+FROM OCCUPATIONS 
+GROUP BY OCCUPATION 
+ORDER BY COUNT(OCCUPATION) ASC;
+
 ```
