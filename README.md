@@ -1,6 +1,6 @@
 # SQL-Practice_HackerRank
 
-## SELECT - BASIC
+## SELECT 
 
 **1.Query all columns for all American cities in the CITY table with populations larger than 100000. The CountryCode for America is USA.**
 ```
@@ -76,8 +76,19 @@ where substr(city,1,1)  not in ("a","e","i","o","u")
 OR
 substr(city,-1,1)  not in ("a","e","i","o","u");
 ```
+**Samantha was tasked with calculating the average monthly salaries for all employees in the EMPLOYEES table, but did not realize her keyboard's  key was broken until after completing the calculation. She wants your help finding the difference between her miscalculation (using salaries with any zeros removed), and the actual average salary.
+Write a query calculating the amount of error (i.e.:  average monthly salaries), and round it up to the next integer.**
 
-## AGGREGATION - BASIC
+```
+select
+ceil(avg(salary)- round(avg(replace(salary,0,""))))
+from employees
+
+```
+
+
+
+## AGGREGATION 
 
 **9.Query the Name of any student in STUDENTS who scored higher than  Marks. Order your output by the last three characters of each name. If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.**
 
@@ -113,7 +124,7 @@ order by LAT_N
 limit 1;
 ```
 
-## ADVANCE - SELECT
+
 
 **1.Write a query identifying the type of each record in the TRIANGLES table using its three side lengths. Output one of the following statements for each record in the table:**
 
@@ -152,4 +163,13 @@ FROM OCCUPATIONS
 GROUP BY OCCUPATION 
 ORDER BY COUNT(OCCUPATION) ASC;
 
+```
+
+**We define an employee's total earnings to be their monthly  worked, and the maximum total earnings to be the maximum total earnings for any employee in the Employee table. Write a query to find the maximum total earnings for all employees as well as the total number of employees who have maximum total earnings. Then print these values as  space-separated integers.**
+
+```
+select concat(max(months*salary),' ',count(*))
+from employee
+group by months*salary desc
+limit 1;
 ```
