@@ -173,3 +173,28 @@ from employee
 group by months*salary desc
 limit 1;
 ```
+
+## JOIN
+**Given the CITY and COUNTRY tables, query the names of all the continents (COUNTRY.Continent) and their respective average city populations (CITY.Population) rounded down to the nearest integer.**
+
+```
+SELECT country.continent, FLOOR(AVG(city.population)) 
+FROM city 
+JOIN country 
+ON city.countryCode = country.code 
+GROUP BY country.continent;
+```
+**You are given two tables: Students and Grades. Students contains three columns ID, Name and Marks.
+Ketty gives Eve a task to generate a report containing three columns: Name, Grade and Mark. Ketty doesn't want the NAMES of those students who received a grade lower than 8. The report must be in descending order by grade -- i.e. higher grades are entered first. If there is more than one student with the same grade (8-10) assigned to them, order those particular students by their name alphabetically. Finally, if the grade is lower than 8, use "NULL" as their name and list them by their grades in descending order. If there is more than one student with the same grade (1-7) assigned to them, order those particular students by their marks in ascending order.
+Write a query to help Eve.**
+
+```
+SELECT 
+CASE
+  WHEN Grade >= 8 THEN Name
+  ELSE NULL
+END AS Name, Grade, Marks 
+FROM Students INNER JOIN Grades 
+ON Students.Marks BETWEEN Grades.Min_Mark AND Grades.Max_Mark 
+ORDER BY Grade DESC, Name ASC, Marks ASC;
+```
